@@ -54,7 +54,13 @@ jobs:
 
       - name: Push tags to own repo
         run: |
-          git remote update --prune
+          # 推送所有标签到远程
+          git push --tags
+
+      - name: Remove temporary remote
+        run: |
+          git remote remove upstream
+
       - name: Cleanup
         run: |
           git gc --prune=now
