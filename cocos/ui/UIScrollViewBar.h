@@ -1,5 +1,6 @@
 /****************************************************************************
 Copyright (c) 2015 Neo Kim (neo.kim@neofect.com)
+Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
 
@@ -59,8 +60,8 @@ public:
     virtual ~ScrollViewBar();
     
     /**
-     * Create a ScrollView with its parent ScrollView and direction.
-     * @return A ScrollViewBar instance.
+     * Create a scroll bar with its parent scroll view and direction.
+     * @return A scroll bar instance.
      */
     static ScrollViewBar* create(ScrollView* parent, ScrollView::Direction direction);
     
@@ -153,16 +154,17 @@ private:
     Vec2 calculatePosition(float innerContainerMeasure, float scrollViewMeasure, float innerContainerPosition, float outOfBoundaryValue, float actualLength);
     
     void updateLength(float length);
+    void processAutoHide(float deltaTime);
     
     ScrollView* _parent;
     ScrollView::Direction _direction;
-	
+    
     Sprite* _upperHalfCircle;
     Sprite* _lowerHalfCircle;
     Sprite* _body;
     
     GLubyte _opacity;
-	
+    
     float _marginFromBoundary;
     float _marginForLength;
 
