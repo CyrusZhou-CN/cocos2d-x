@@ -40,8 +40,8 @@ jobs:
               echo "Syncing branch: $branch"
               gh repo sync $LOCAL_REPO -b $branch --force
             else
-              echo "Local branch $branch exists, syncing..."
-              git checkout -b $branch upstream/$branch
+              echo "Local branch $branch exists, syncing...[git checkout --no-track -b $branch upstream/$branch]"
+              git checkout --no-track -b $branch upstream/$branch
               git push origin $branch
             fi
           done
