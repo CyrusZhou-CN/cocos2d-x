@@ -28,7 +28,9 @@ jobs:
 
           # 添加远程仓库
           git remote add upstream $REMOTE_URL
-          git fetch upstream --all --tags
+          echo "fetch upstream --all --tags"
+          git fetch upstream --all --tags          
+          echo "push --all --tags --progress origin"
           git push --all --tags --progress "origin"
           
           # 获取所有远程分支
