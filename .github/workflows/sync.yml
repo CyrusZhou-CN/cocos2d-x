@@ -36,8 +36,8 @@ jobs:
               echo "Syncing branch: $branch"
               gh repo sync $LOCAL_REPO -b $branch --force
             else
-              echo "Local branch $branch does not exist, checkout..."              
-              git checkout $branch
+              echo "Local branch $branch exists, syncing..."
+              git checkout --no-track -b $branch
               git pull origin $branch
             fi
           done
