@@ -36,8 +36,7 @@ jobs:
 
       - name: Push tags to own repo
         run: |
-          git fetch --tags          
-          git push --tags
+          git remote update --prune
       - name: Cleanup
         run: |
           git gc --prune=now
