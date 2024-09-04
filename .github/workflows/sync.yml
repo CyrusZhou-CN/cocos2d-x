@@ -30,9 +30,7 @@ jobs:
           
           REMOTE_URL="https://github.com/$REMOTE_REPO.git"
           git remote add upstream $REMOTE_URL
-          echo "fetch upstream --all --tags"
           git fetch upstream --all --tags          
-          echo "push --all --tags --progress origin"
           git push --all --tags --progress "origin"
           
           # 获取所有远程分支
