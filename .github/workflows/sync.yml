@@ -19,7 +19,6 @@ jobs:
           
       - name: Authenticate with GitHub CLI
         run: |
-          git remote update --prune
           echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
 
       - name: Sync all branches
@@ -31,8 +30,15 @@ jobs:
           BRANCHES=$(gh api repos/$REMOTE_REPO/branches  --paginate  --jq '.[].name')
 
           for branch in $BRANCHES; do
-            echo "Syncing branch: $branch"
-            gh repo sync $LOCAL_REPO -b $branch --force
+            echo "Checking if local branch $branch exists"
+            if git rev-parse --verify "$branch" >/dev/null 2>&1; then
+              echo "Syncing branch: $branch"
+              gh repo sync $LOCAL_REPO -b $branch --force
+            else
+              echo "Local branch $branch does not exist, checkout..."              
+              git checkout $branch
+              git pull origin $branch
+            fi
           done
 
       - name: Push tags to own repo
