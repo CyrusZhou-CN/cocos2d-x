@@ -19,6 +19,7 @@ jobs:
           
       - name: Authenticate with GitHub CLI
         run: |
+          git remote update --prune
           echo "${{ secrets.GH_TOKEN }}" | gh auth login --with-token
 
       - name: Sync all branches
